@@ -3,10 +3,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './config/mongoDB.config.js';
+import userRoutes from './routes/user.routes.js';
 
 const app = express();
-
-
 
 dotenv.config()
 const PORT = process.env.PORT || 3002
@@ -17,6 +16,8 @@ connectDB({
 // middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+app.use('/api/user', userRoutes)
 
 
 app.get('/', (req, res) => {
