@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import { verifyEmail } from "../verifyEmail/verifyEmail.js";
 import jwt from 'jsonwebtoken'
 import { Session } from "../model/session.model.js";
+import { sendOtpMail } from "../verifyEmail/sendOtpMail.js";
 
 export const userRegistration = async (req, res) => {
   try {
@@ -126,8 +127,38 @@ export const userLogin = async (req, res) => {
 
 export const userLogout = async (req, res) => {
   try {
-    const { userId } = req.userId;
+    const  userId  = req.userId;
+
+    await Session.deleteMany({ userId });
+
+    await User.findByIdAndUpdate(userId, {isLoggedIn: false}, { new: true })
+
+    return res.status(200).json({success: true, message: 'user logout successfully'});
+
   } catch (error) {
-    return res.status(500)
+    return res.status(500).json({success: false, message: error.message})
   }
+}
+
+export const forgotPassword = async (req, res) => {
+try {
+    const { email } = req.body;
+  
+    const user = await User.findOne({email})
+    if(!user){
+      return res.status(400).json({success: false, message: 'User not found'})
+    }
+  
+    const otp = Math.floor(100000 + Math.random() * 900000).toString()
+    const expOTP = new Date(Date.now() + 10 * 60 * 1000);
+  
+    user.otp = otp;
+    user.expOTP = expOTP; 
+    await user.save();
+
+    await sendOtpMail(email, otp);
+    return res.status(200).json({success: true, message: 'OTP send successfully'})
+} catch (error) {
+  return res.status(500).json({success: false, message: error.message})
+}
 }
