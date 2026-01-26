@@ -9,7 +9,7 @@ export const userRegistration = async (req, res) => {
   try {
     const {userName, email, password} = req.body;
     if(
-      [userName, email, password].some((fields) => !fields || fields.trim() === '')){
+      [userName, email, password].some((fields) => !fields || fields?.trim() === '')){
         res.status(400).json({success: false, message: 'all fileds should be required'})
       }
 
@@ -226,4 +226,41 @@ export const changePassword = async (req, res) => {
   } catch (error) {
     return res.status(500).json({success: false, message: error.message})
   }
+}
+
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.userId
+    if(!userId){
+      return res.status(400).json({success: false, message: 'Unauthorized user'})
+    }
+  
+    const { userName, email } = req.body;
+
+    if(!userName?.trim() || !email?.trim()){
+      return res.status(400).json({success: false, message: 'All fields should be required'})
+    }
+  
+    const updateProfile = await User.findByIdAndUpdate(
+      userId,
+      { userName, email },
+      {new: true, runValidators: true}
+    ).select('-password')
+  
+    if(!updateProfile){
+      return res.status(404).json({success: false, message: 'User not found'})
+    }
+  
+    return res.status(200).json({success: true, message:'profile updated successfully', data: updateProfile})
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        message: 'Email already exists'
+      });
+    }
+
+    return res.status(500).json({success: false, message: error.message})
+  }
+
 }
