@@ -162,3 +162,68 @@ try {
   return res.status(500).json({success: false, message: error.message})
 }
 }
+
+export const verifyOTP = async (req, res) => {
+  const { otp } = req.body;
+  const email = req.params.email;
+
+  if(!otp){
+    return res.status(400).json({success: false, message: 'OTP is required'})
+  }
+
+  try {
+    const user = await User.findOne({ email })
+    if(!user){
+      return res.status(400).json({success: false, message: "user not found"})
+    }
+
+    if(!user || !user.expOTP){
+      return res.status(400).json({success: false, message: 'OTP not generated or allready vieified'})
+    }
+
+    if(user.expOTP < new Date()){
+      return res.status(400).json({success: false, message: 'OTP is expired. please generate a new one'})
+    }
+
+    if(otp !== user.otp){
+     return res.status(400).json({success: false, message: 'Invalid OTP'})
+    }
+
+    user.otp = null;
+    user.expOTP = null;
+
+    await user.save();
+
+    return res.status(200).json({success: true, message: 'OTP verify successfully'})
+  } catch (error) {
+    return res.status(500).json({success: false, message: error.message})
+  }
+}
+
+export const changePassword = async (req, res) => {
+  const { newPassword, confirmPassword } = req.body;
+  const email = req.params.email;
+
+  if(!newPassword || !confirmPassword){
+    return res.status(400).json({success: false, message: 'all fields are required'});
+  }
+
+  if(newPassword !== confirmPassword){
+    return res.status(400).json({success: false, message: 'both are not same'})
+  }
+
+  try {
+    const user = await User.findOne({ email })
+    if(!user){
+      return res.status(400).json({success: false, message: 'user not found'})
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+
+    return res.status(200).json({success: true, message: 'password change successfully'})
+  } catch (error) {
+    return res.status(500).json({success: false, message: error.message})
+  }
+}
