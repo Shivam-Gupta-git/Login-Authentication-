@@ -1,20 +1,24 @@
-import nodemailer from 'nodemailer'
-import 'dotenv/config'
+import nodemailer from "nodemailer";
+import "dotenv/config";
 
 export const verifyEmail = async (email, token) => {
- const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth:{
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASSWORD
-  }
- })
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD,
+    },
+  });
 
- const mailConfiguration = {
-  from: process.env.MAIL_USER,
-  to: email,
-  subject: 'Email Verification',
-  html: `
+  const frontendUrl = (
+    process.env.FRONTEND_URL || "http://localhost:5173"
+  ).replace(/\/$/, "");
+
+  const mailConfiguration = {
+    from: process.env.MAIL_USER,
+    to: email,
+    subject: "Email Verification",
+    html: `
   <div style="
     font-family: Arial, sans-serif;
     background-color: #f4f6f8;
@@ -33,7 +37,7 @@ export const verifyEmail = async (email, token) => {
         Click the button below to verify your email
       </p>
 
-      <a href="http://localhost:3000/verify/${token}"
+      <a href="${frontendUrl}/verify/${token}"
         style="
           display: inline-block;
           margin-top: 20px;
@@ -56,14 +60,14 @@ export const verifyEmail = async (email, token) => {
       </p>
     </div>
   </div>
-`
- }
+`,
+  };
 
- transporter.sendMail(mailConfiguration, function(error, info){
-  if(error){
-    throw new Error(error)
-  }
-  console.log('Email send Successfully')
-  console.log(info);
- })
-}
+  transporter.sendMail(mailConfiguration, function (error, info) {
+    if (error) {
+      throw new Error(error);
+    }
+    console.log("Email send Successfully");
+    console.log(info);
+  });
+};
