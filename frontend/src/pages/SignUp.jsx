@@ -133,7 +133,7 @@ function SignUp() {
                          text-gray-400 hover:text-blue-500 transition"
               aria-label="Toggle password visibility"
             >
-              {showPassword ? <FaEyeSlash size={18} /> : <IoEyeSharp size={18} />}
+              {showPassword ? <IoEyeSharp size={18} />  : <FaEyeSlash size={18} />}
             </button>
           </div>
         </div>
