@@ -45,7 +45,7 @@ function SignUp() {
 
       if (response.data.success) {
         alert("User registered successfully 🎉");
-        navigate("/login");
+        navigate("/verify");
       }
     } catch (error) {
       setErrorMessage(

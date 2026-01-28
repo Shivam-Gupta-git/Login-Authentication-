@@ -5,6 +5,7 @@ import cors from 'cors'
 import connectDB from './config/mongoDB.config.js';
 import userRoutes from './routes/user.routes.js';
 
+
 const app = express();
 
 dotenv.config()

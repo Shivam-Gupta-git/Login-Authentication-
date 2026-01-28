@@ -3,14 +3,20 @@ import './App.css'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import Header from './components/Header'
+import VerifyEmail from './pages/VerifyEmail'
+import Verify from './pages/Verify'
 
 function App() {
 
   return (
     <>
+    {/* <Header/> */}
     <Routes>
       <Route path='/' element={<Home/>}></Route>
       <Route path='/signup' element={<SignUp/>}></Route>
+      <Route path='/verify' element={<VerifyEmail/>}></Route>
+      <Route path='/verify/:token' element={<Verify/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
     </Routes>
     </>
