@@ -6,18 +6,24 @@ import Login from './pages/Login'
 import Header from './components/Header'
 import VerifyEmail from './pages/VerifyEmail'
 import Verify from './pages/Verify'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Notes from './pages/Notes'
 
 function App() {
 
   return (
     <>
-    {/* <Header/> */}
+    <Header/>
     <Routes>
       <Route path='/' element={<Home/>}></Route>
       <Route path='/signup' element={<SignUp/>}></Route>
       <Route path='/verify' element={<VerifyEmail/>}></Route>
       <Route path='/verify/:token' element={<Verify/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route path='/about' element={<About/>}></Route>
+      <Route path='/contact' element={<Contact/>}></Route>
+      <Route path='/notes' element={<Notes/>}></Route>
     </Routes>
     </>
   )

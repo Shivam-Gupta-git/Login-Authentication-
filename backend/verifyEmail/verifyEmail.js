@@ -50,7 +50,7 @@ export const verifyEmail = async (email, token) => {
         ">
         Verify Email
       </a>
-
+      <div style="text-align: center; margin: 20px 0;">
       <p style="
         margin-top: 20px;
         font-size: 12px;

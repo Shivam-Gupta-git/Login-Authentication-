@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 
 function SignUp() {
-  const { backend_URL, navigate } = useContext(UserContext);
+  const { backend_URL, navigate,} = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     userName: "",
