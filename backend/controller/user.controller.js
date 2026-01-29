@@ -268,7 +268,6 @@ export const updateProfile = async (req, res) => {
 export const userChangePassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   const  email  = req.params.email;
-  console.log(email)
 
   if(!oldPassword || !newPassword){
     return res.status(400).json({success: false, message: 'All fields should be required'})
