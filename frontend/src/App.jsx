@@ -9,6 +9,7 @@ import Verify from './pages/Verify'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Notes from './pages/Notes'
+import ProtectedRouter from './components/ProtectedRouter'
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/about' element={<About/>}></Route>
       <Route path='/contact' element={<Contact/>}></Route>
-      <Route path='/notes' element={<Notes/>}></Route>
+      <Route path='/notes' element={<ProtectedRouter><Notes/></ProtectedRouter>}></Route>
     </Routes>
     </>
   )

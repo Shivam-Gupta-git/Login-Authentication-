@@ -2,11 +2,15 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Home = () => {
-  const { setProfileBoxOpen } = useContext(UserContext)
+  const { setProfileBoxOpen, user } = useContext(UserContext);
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100" onClick={() => setProfileBoxOpen(false)}>
+    <div
+      className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100"
+      onClick={() => setProfileBoxOpen(false)}
+    >
       {/* Hero Section */}
       <main className="flex flex-col items-center justify-center text-center px-6">
+
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mt-10">
           Secure Authentication <br />
           <span className="text-indigo-600">Made Simple</span>
@@ -56,9 +60,7 @@ const Home = () => {
             <h3 className="text-xl font-semibold text-gray-800">
               {item.title}
             </h3>
-            <p className="mt-3 text-gray-600 text-sm">
-              {item.desc}
-            </p>
+            <p className="mt-3 text-gray-600 text-sm">{item.desc}</p>
           </div>
         ))}
       </section>

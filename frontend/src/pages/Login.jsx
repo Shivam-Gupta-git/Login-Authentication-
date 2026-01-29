@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
 function Login() {
-  const { backend_URL, navigate } = useContext(UserContext);
+  const { backend_URL, navigate, setUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,37 +25,43 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = formData;
-  
+
     // ✅ Validation
     if (!email || !password) {
       setErrorMessage("All fields are required");
       return;
     }
-  
+
     try {
       setLoading(true);
-      setErrorMessage(""); 
-  
+      setErrorMessage("");
+
       const response = await axios.post(
         `${backend_URL}/api/user/userLogin`,
         { email, password },
         {
           headers: { "Content-Type": "application/json" },
-        }
+        },
       );
-  
+
       if (response.data.success) {
-        localStorage.setItem("token", response.data.token);
-        
+        const { accessToken, refreshToken, regeteredUser } = response.data;
+
+        if (accessToken) localStorage.setItem("accessToken", accessToken);
+        if (refreshToken) localStorage.setItem("refreshToken", refreshToken);
+        if (regeteredUser) {
+          localStorage.setItem("user", JSON.stringify(regeteredUser));
+          setUser(regeteredUser);
+        }
+
         alert("Login Successful");
         navigate("/");
       } else {
-
         setErrorMessage(response.data.message || "Login failed");
       }
     } catch (error) {
       setErrorMessage(
-        error.response?.data?.message || "Something went wrong. Try again."
+        error.response?.data?.message || "Something went wrong. Try again.",
       );
     } finally {
       setLoading(false);
@@ -121,7 +127,11 @@ function Login() {
               onClick={() => setShowPassword((prev) => !prev)}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-indigo-600 hover:text-indigo-800 font-medium"
             >
-              {showPassword ? <IoEyeSharp size={18}/>: <FaEyeSlash size={18} /> }
+              {showPassword ? (
+                <IoEyeSharp size={18} />
+              ) : (
+                <FaEyeSlash size={18} />
+              )}
             </button>
           </div>
         </div>
@@ -135,9 +145,11 @@ function Login() {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition ${loading ? "bg-gray-400 text-white cursor-not-allowed"
-          : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md"}`}
-          
+          className={`w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition ${
+            loading
+              ? "bg-gray-400 text-white cursor-not-allowed"
+              : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md"
+          }`}
         >
           Sign In
         </button>
