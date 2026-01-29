@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { FaCircleUser } from "react-icons/fa6";
 import axios from "axios";
@@ -106,7 +106,7 @@ function Header() {
                 <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-lg border overflow-hidden">
                   <Link
                     className="block px-4 py-2 hover:bg-indigo-50"
-                    to="/profile"
+                    to="/user-profile"
                   >
                     {user.userName}
                   </Link>

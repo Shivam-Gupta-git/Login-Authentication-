@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const UserContext = createContext();
 
@@ -9,14 +9,14 @@ const UserContextProvider = (props) => {
     import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
   const navigate = useNavigate();
   const [profileBoxOpen, setProfileBoxOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem("user");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
     }
-  }, []);
+  });
 
   const value = {
     navigate,

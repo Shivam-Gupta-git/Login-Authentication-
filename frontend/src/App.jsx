@@ -13,6 +13,7 @@ import ProtectedRouter from './components/ProtectedRouter'
 import ForgotPassword from './pages/ForgotPassword'
 import VerifyOTP from './pages/VerifyOTP'
 import ChangePassword from './pages/ChangePassword'
+import UserProfile from './pages/UserProfile'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
       <Route path='/forgotPassword' element={<ForgotPassword/>}></Route>
       <Route path='/verify-otp/:email' element={<VerifyOTP/>}></Route>
       <Route path='/change-password/:email' element={<ChangePassword/>}></Route>
+      <Route path='/user-profile' element={<ProtectedRouter><UserProfile/></ProtectedRouter>}></Route>
     </Routes>
     </>
   )

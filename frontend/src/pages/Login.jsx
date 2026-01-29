@@ -26,7 +26,6 @@ function Login() {
     event.preventDefault();
     const { email, password } = formData;
 
-    // ✅ Validation
     if (!email || !password) {
       setErrorMessage("All fields are required");
       return;
@@ -41,7 +40,7 @@ function Login() {
         { email, password },
         {
           headers: { "Content-Type": "application/json" },
-        },
+        }
       );
 
       if (response.data.success) {
@@ -61,7 +60,7 @@ function Login() {
       }
     } catch (error) {
       setErrorMessage(
-        error.response?.data?.message || "Something went wrong. Try again.",
+        error.response?.data?.message || "Something went wrong. Try again."
       );
     } finally {
       setLoading(false);
@@ -106,7 +105,10 @@ function Login() {
             >
               Password
             </label>
-            <Link to="/forgotPassword" className="text-sm text-indigo-600 hover:underline">
+            <Link
+              to="/forgotPassword"
+              className="text-sm text-indigo-600 hover:underline"
+            >
               Forgot password?
             </Link>
           </div>
@@ -135,11 +137,6 @@ function Login() {
             </button>
           </div>
         </div>
-        <div>
-          {errorMessage && (
-            <p className="text-sm text-red-500 text-center">{errorMessage}</p>
-          )}
-        </div>
 
         {/* Button */}
         <button
@@ -153,6 +150,14 @@ function Login() {
         >
           Sign In
         </button>
+
+        {/* error message */}
+        {errorMessage && (
+          <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm mt-2 justify-center">
+            <span>⚠️</span>
+            <span>{errorMessage}</span>
+          </div>
+        )}
 
         {/* Footer */}
         <p className="text-center text-sm text-gray-600 mt-6">
