@@ -103,7 +103,7 @@ function Header() {
 
               {/* Dropdown */}
               {profileBoxOpen && (
-                <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-lg border overflow-hidden">
+                <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-lg  overflow-hidden">
                   <Link
                     className="block px-4 py-2 hover:bg-indigo-50"
                     to="/user-profile"
@@ -112,7 +112,7 @@ function Header() {
                   </Link>
                   <Link
                     className="block px-4 py-2 hover:bg-indigo-50"
-                    to="/settings"
+                    to="/setting"
                   >
                     Settings
                   </Link>

@@ -15,6 +15,7 @@ import VerifyOTP from './pages/VerifyOTP'
 import ChangePassword from './pages/ChangePassword'
 import UserProfile from './pages/UserProfile'
 import Footer from './pages/Footer'
+import Setting from './pages/Setting'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <Route path='/verify-otp/:email' element={<VerifyOTP/>}></Route>
       <Route path='/change-password/:email' element={<ChangePassword/>}></Route>
       <Route path='/user-profile' element={<ProtectedRouter><UserProfile/></ProtectedRouter>}></Route>
+      <Route path='/setting' element={<ProtectedRouter><Setting/></ProtectedRouter>}></Route>
     </Routes>
     <Footer/>
     </>
