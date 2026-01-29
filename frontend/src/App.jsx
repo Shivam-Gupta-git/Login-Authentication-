@@ -16,6 +16,7 @@ import ChangePassword from './pages/ChangePassword'
 import UserProfile from './pages/UserProfile'
 import Footer from './pages/Footer'
 import Setting from './pages/Setting'
+import UserChangePassword from './pages/UserChangePassword'
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
       <Route path='/change-password/:email' element={<ChangePassword/>}></Route>
       <Route path='/user-profile' element={<ProtectedRouter><UserProfile/></ProtectedRouter>}></Route>
       <Route path='/setting' element={<ProtectedRouter><Setting/></ProtectedRouter>}></Route>
+      <Route path='/user-change-password/:email' element={<ProtectedRouter><UserChangePassword/></ProtectedRouter>}></Route>
     </Routes>
     <Footer/>
     </>

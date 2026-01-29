@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext';
 
 function UserProfile() {
   const { user, setProfileBoxOpen } = useContext(UserContext);
+  const email = user?.email;
 
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-10" onClick={() => setProfileBoxOpen(false)}>
@@ -57,7 +58,7 @@ function UserProfile() {
           </div>
 
           <Link
-            to={`/change-password`}
+            to={`/user-change-password/${email}`}
             className="mt-4 inline-block text-center py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
           >
             Change Password
