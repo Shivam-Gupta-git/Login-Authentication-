@@ -53,12 +53,7 @@ function About() {
 
         </div>
 
-        {/* Footer Section */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600">
-            Built with ❤️ using React & Tailwind CSS
-          </p>
-        </div>
+
 
       </div>
     </div>
