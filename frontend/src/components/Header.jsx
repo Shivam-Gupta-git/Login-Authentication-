@@ -5,50 +5,75 @@ import { FaCircleUser } from "react-icons/fa6";
 import axios from "axios";
 
 function Header() {
-  const { profileBoxOpen, setProfileBoxOpen, user, backend_URL, setUser } = useContext(UserContext);
+  const { profileBoxOpen, setProfileBoxOpen, user, backend_URL, setUser } =
+    useContext(UserContext);
   const accessToken = localStorage.getItem("accessToken");
 
   const handelLogOut = async () => {
     try {
-      const response = await axios.post(`${backend_URL}/api/user/userLogout`, {},{
-        headers: {
-          Authorization: `Bearer ${accessToken}`
+      const response = await axios.post(
+        `${backend_URL}/api/user/userLogout`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
-      })
-      if(response.data.success){
+      );
+      if (response.data.success) {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("user");
         setUser(null);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const navLinks = (
     <>
       <NavLink
         to="/"
-        className="text-lg font-medium hover:text-indigo-600 transition"
+        end
+        className={({ isActive }) =>
+          `text-lg font-medium transition ${
+            isActive ? "text-indigo-600" : "hover:text-indigo-600 text-gray-700"
+          }`
+        }
       >
         Home
       </NavLink>
       <NavLink
         to="/notes"
-        className="text-lg font-medium hover:text-indigo-600 transition"
+        end
+        className={({ isActive }) =>
+          `text-lg font-medium transition ${
+            isActive ? "text-indigo-600" : "hover:text-indigo-600 text-gray-700"
+          }`
+        }
       >
         Notes
       </NavLink>
       <NavLink
         to="/about"
-        className="text-lg font-medium hover:text-indigo-600 transition"
+        end
+        className={({ isActive }) =>
+          `text-lg font-medium transition ${
+            isActive ? "text-indigo-600" : "hover:text-indigo-600 text-gray-700"
+          }`
+        }
       >
         About
       </NavLink>
       <NavLink
         to="/contact"
-        className="text-lg font-medium hover:text-indigo-600 transition"
+        end
+        className={({ isActive }) =>
+          `text-lg font-medium transition ${
+            isActive ? "text-indigo-600" : "hover:text-indigo-600 text-gray-700"
+          }`
+        }
       >
         Contact
       </NavLink>
@@ -91,7 +116,10 @@ function Header() {
                   >
                     Settings
                   </Link>
-                  <button onClick={handelLogOut} className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50">
+                  <button
+                    onClick={handelLogOut}
+                    className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
+                  >
                     Logout
                   </button>
                 </div>

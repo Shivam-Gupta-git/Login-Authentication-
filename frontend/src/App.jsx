@@ -10,6 +10,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Notes from './pages/Notes'
 import ProtectedRouter from './components/ProtectedRouter'
+import ForgotPassword from './pages/ForgotPassword'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path='/about' element={<About/>}></Route>
       <Route path='/contact' element={<Contact/>}></Route>
       <Route path='/notes' element={<ProtectedRouter><Notes/></ProtectedRouter>}></Route>
+      <Route path='/forgotPassword' element={<ForgotPassword/>}></Route>
     </Routes>
     </>
   )
