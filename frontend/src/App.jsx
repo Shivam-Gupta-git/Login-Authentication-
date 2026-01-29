@@ -14,6 +14,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import VerifyOTP from './pages/VerifyOTP'
 import ChangePassword from './pages/ChangePassword'
 import UserProfile from './pages/UserProfile'
+import Footer from './pages/Footer'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <Route path='/change-password/:email' element={<ChangePassword/>}></Route>
       <Route path='/user-profile' element={<ProtectedRouter><UserProfile/></ProtectedRouter>}></Route>
     </Routes>
+    <Footer/>
     </>
   )
 }
