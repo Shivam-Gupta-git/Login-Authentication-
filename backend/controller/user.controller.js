@@ -264,3 +264,33 @@ export const updateProfile = async (req, res) => {
   }
 
 }
+
+export const userChangePassword = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  const  email  = req.params.email;
+  console.log(email)
+
+  if(!oldPassword || !newPassword){
+    return res.status(400).json({success: false, message: 'All fields should be required'})
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if(!user){
+      return res.status(400).json({success: false, message: 'user not found'})
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if(!isMatch){
+      return res.status(400).json({success: false, message: 'old password is incorrect'})
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+    return res.status(200).json({success: true, message: 'password changed successfully'})
+
+  } catch (error) {
+    return res.status(500).json({success: false, message: error.message})
+  }
+}
