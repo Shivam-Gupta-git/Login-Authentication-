@@ -11,6 +11,7 @@ import Contact from './pages/Contact'
 import Notes from './pages/Notes'
 import ProtectedRouter from './components/ProtectedRouter'
 import ForgotPassword from './pages/ForgotPassword'
+import VerifyOTP from './pages/VerifyOTP'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
       <Route path='/contact' element={<Contact/>}></Route>
       <Route path='/notes' element={<ProtectedRouter><Notes/></ProtectedRouter>}></Route>
       <Route path='/forgotPassword' element={<ForgotPassword/>}></Route>
+      <Route path='/verify-otp/:email' element={<VerifyOTP/>}></Route>
     </Routes>
     </>
   )
