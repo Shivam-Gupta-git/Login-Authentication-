@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { UserContext } from "../context/UserContext";
 
 function Footer() {
+  const { setProfileBoxOpen } = useContext(UserContext);
   return (
-    <footer className="bg-gray-100 border-t border-gray-200">
+    <footer className="bg-gray-100 border-t border-gray-200" onClick={() => setProfileBoxOpen(false)}>
       <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
 
         {/* Logo / Branding */}

@@ -4,10 +4,10 @@ import { FaUser, FaLock, FaSignOutAlt } from "react-icons/fa";
 import { UserContext } from '../context/UserContext';
 
 function UserProfile() {
-  const { user } = useContext(UserContext);
+  const { user, setProfileBoxOpen } = useContext(UserContext);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-10">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-10" onClick={() => setProfileBoxOpen(false)}>
     <div className="max-w-5xl mx-auto">
 
       {/* Header */}

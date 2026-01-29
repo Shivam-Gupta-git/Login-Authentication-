@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 function Notes() {
+  const { setProfileBoxOpen } = useContext(UserContext)
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-12">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-12" onClick={() => setProfileBoxOpen(false)}>
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

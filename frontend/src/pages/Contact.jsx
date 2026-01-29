@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 function Contact() {
+  const { setProfileBoxOpen } = useContext(UserContext)
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-12 flex items-center justify-center">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-12 flex items-center justify-center" onClick={() => setProfileBoxOpen(false)}>
       <div className="bg-white max-w-2xl w-full p-8 rounded-3xl shadow-xl text-center">
         <h2 className="text-3xl font-bold text-indigo-700 mb-4">Contact Us</h2>
         <p className="text-gray-600 mb-8">
