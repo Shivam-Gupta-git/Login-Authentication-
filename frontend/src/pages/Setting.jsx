@@ -1,71 +1,217 @@
 import React from "react";
-import { FaUser, FaBell, FaLock, FaCreditCard } from "react-icons/fa";
+import { FaUser, FaBell, FaLock, FaCreditCard, FaCog, FaShieldAlt } from "react-icons/fa";
 
 function Setting() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+<div className="relative min-h-screen overflow-hidden bg-[#96e1ff] px-4 py-10 sm:px-6 lg:px-8">
+  {/* Background Effects */}
+  <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-white/20 blur-3xl" />
+  <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl" />
+  <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
 
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-indigo-700">
-            Settings
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Manage your account preferences and security settings
-          </p>
+  <div className="relative z-10 mx-auto max-w-7xl">
+    {/* Header */}
+    <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between animate-[fadeInDown_0.7s_ease]">
+      <div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2 text-sm font-medium text-[#0f3d68] backdrop-blur-xl">
+          <span className="h-2 w-2 rounded-full bg-[#55adff]" />
+          Account Preferences
         </div>
 
-        {/* Settings Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <h1 className="mt-5 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          Settings
+        </h1>
 
-          {/* Profile Settings */}
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-            <div className="flex items-center gap-3 mb-4">
-              <FaUser className="text-indigo-600 text-xl" />
-              <h2 className="text-lg font-semibold text-gray-800">Profile</h2>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Update your personal information like name, email, and avatar.
+        <p className="mt-3 max-w-2xl text-base text-gray-700 sm:text-lg">
+          Manage your profile, notifications, security and billing settings
+          from one beautiful dashboard.
+        </p>
+      </div>
+
+      {/* Quick Summary */}
+      <div className="w-full max-w-sm rounded-[28px] border border-white/30 bg-white/60 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] backdrop-blur-2xl animate-[fadeInRight_0.8s_ease]">
+        <div className="flex items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#55adff]/10 text-2xl text-[#55adff]">
+            <FaCog />
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500">Profile Completion</p>
+            <h3 className="text-xl font-bold text-gray-900">85% Completed</h3>
+          </div>
+        </div>
+
+        <div className="mt-5 h-2 overflow-hidden rounded-full bg-gray-200">
+          <div className="h-full w-[85%] rounded-full bg-linear-to-r from-[#55adff] to-cyan-500" />
+        </div>
+
+        <p className="mt-2 text-xs text-gray-500">
+          Add more account details and enable security options.
+        </p>
+      </div>
+    </div>
+
+    {/* Settings Cards */}
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      {/* Profile */}
+      <div className="group relative overflow-hidden rounded-[30px] border border-white/30 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)] animate-[fadeInUp_0.8s_ease]">
+        <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl" />
+
+        <div className="relative z-10">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#55adff]/10 text-2xl text-[#55adff] transition duration-300 group-hover:scale-110">
+            <FaUser />
+          </div>
+
+          <h2 className="mt-6 text-2xl font-bold text-gray-900">Profile</h2>
+
+          <p className="mt-2 text-sm leading-7 text-gray-600">
+            Update your personal details such as your name, email address and
+            profile image.
+          </p>
+
+          <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-4">
+            <p className="text-sm font-medium text-blue-700">
+              Personal information is visible only to you.
             </p>
           </div>
 
-          {/* Notifications */}
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-            <div className="flex items-center gap-3 mb-4">
-              <FaBell className="text-indigo-600 text-xl" />
-              <h2 className="text-lg font-semibold text-gray-800">Notifications</h2>
+          <button className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#55adff] transition hover:gap-3">
+            Manage Profile →
+          </button>
+        </div>
+      </div>
+
+      {/* Notifications */}
+      <div className="group relative overflow-hidden rounded-[30px] border border-white/30 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)] animate-[fadeInUp_1s_ease]">
+        <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-yellow-500/10 blur-3xl" />
+
+        <div className="relative z-10">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-100 text-2xl text-yellow-500 transition duration-300 group-hover:scale-110">
+            <FaBell />
+          </div>
+
+          <h2 className="mt-6 text-2xl font-bold text-gray-900">
+            Notifications
+          </h2>
+
+          <p className="mt-2 text-sm leading-7 text-gray-600">
+            Control email, SMS and app notifications to stay updated your way.
+          </p>
+
+          <div className="mt-6 flex items-center justify-between rounded-2xl border border-yellow-100 bg-yellow-50 p-4">
+            <span className="text-sm font-medium text-yellow-700">
+              Email Alerts
+            </span>
+
+            <div className="flex h-7 w-12 items-center rounded-full bg-[#55adff] p-1">
+              <div className="ml-auto h-5 w-5 rounded-full bg-white shadow-sm" />
             </div>
-            <p className="text-gray-600 text-sm">
-              Manage email, SMS, and push notifications from the app.
+          </div>
+
+          <button className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-yellow-600 transition hover:gap-3">
+            Notification Settings →
+          </button>
+        </div>
+      </div>
+
+      {/* Security */}
+      <div className="group relative overflow-hidden rounded-[30px] border border-white/30 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)] animate-[fadeInUp_1.2s_ease]">
+        <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-violet-500/10 blur-3xl" />
+
+        <div className="relative z-10">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-2xl text-violet-600 transition duration-300 group-hover:scale-110">
+            <FaLock />
+          </div>
+
+          <h2 className="mt-6 text-2xl font-bold text-gray-900">Security</h2>
+
+          <p className="mt-2 text-sm leading-7 text-gray-600">
+            Protect your account with a strong password and two-factor
+            authentication.
+          </p>
+
+          <div className="mt-6 rounded-2xl border border-violet-100 bg-violet-50 p-4">
+            <div className="flex items-center gap-2">
+              <FaShieldAlt className="text-violet-500" />
+              <span className="text-sm font-medium text-violet-700">
+                2-Step Verification Available
+              </span>
+            </div>
+          </div>
+
+          <button className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-violet-600 transition hover:gap-3">
+            Manage Security →
+          </button>
+        </div>
+      </div>
+
+      {/* Billing */}
+      <div className="group relative overflow-hidden rounded-[30px] border border-white/30 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)] animate-[fadeInUp_1.4s_ease]">
+        <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-emerald-500/10 blur-3xl" />
+
+        <div className="relative z-10">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-2xl text-emerald-600 transition duration-300 group-hover:scale-110">
+            <FaCreditCard />
+          </div>
+
+          <h2 className="mt-6 text-2xl font-bold text-gray-900">Billing</h2>
+
+          <p className="mt-2 text-sm leading-7 text-gray-600">
+            Manage subscriptions, invoices and your preferred payment methods.
+          </p>
+
+          <div className="mt-6 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+            <p className="text-sm font-medium text-emerald-700">
+              No pending payments or overdue invoices.
             </p>
           </div>
 
-          {/* Security */}
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-            <div className="flex items-center gap-3 mb-4">
-              <FaLock className="text-indigo-600 text-xl" />
-              <h2 className="text-lg font-semibold text-gray-800">Security</h2>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Change your password and enable two-factor authentication.
-            </p>
-          </div>
-
-          {/* Payment / Billing */}
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-            <div className="flex items-center gap-3 mb-4">
-              <FaCreditCard className="text-indigo-600 text-xl" />
-              <h2 className="text-lg font-semibold text-gray-800">Billing</h2>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Manage your payment methods, invoices, and subscription plans.
-            </p>
-          </div>
-
+          <button className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 transition hover:gap-3">
+            View Billing →
+          </button>
         </div>
       </div>
     </div>
+  </div>
+
+  {/* Animation Styles */}
+  <style>
+    {`
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(35px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `}
+  </style>
+</div>
   );
 }
 

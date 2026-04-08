@@ -45,76 +45,106 @@ function ChangePassword() {
   }
   
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
-  <div className="bg-white w-full max-w-md p-8 rounded-3xl shadow-xl flex flex-col gap-6">
+<div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#96e1ff] px-3 py-4 sm:px-4">
+  {/* Background Blur */}
+  <div className="absolute -top-20 -left-16 h-56 w-56 rounded-full bg-white/20 blur-3xl" />
+  <div className="absolute top-1/4 -right-20 h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl" />
+  <div className="absolute bottom-0 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-blue-900/10 blur-3xl" />
 
-    {/* Header */}
-    <div className="text-center">
-      <h2 className="text-3xl font-bold text-indigo-700">
-        Change Password
-      </h2>
-      <p className="mt-2 text-gray-600">
-        Set a new password for
-        <span className="block font-medium text-indigo-600 break-all">
+  {/* Center Form */}
+  <div className="relative z-10 w-full max-w-112.5">
+    <div className="rounded-[30px] border border-white/30 bg-white/95 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.12)] backdrop-blur-xl sm:p-8">
+      
+      {/* Icon */}
+      <div className="mb-5 flex justify-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#55adff]/10">
+          <svg
+            className="h-7 w-7 text-[#55adff]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 15v2m-6-6V9a6 6 0 1112 0v2m-13 0h14a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1v-7a1 1 0 011-1z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Header */}
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+          Change Password
+        </h2>
+
+        <p className="mt-2 text-sm leading-6 text-gray-500">
+          Set a strong new password for
+        </p>
+
+        <p className="mt-1 break-all text-sm font-semibold text-[#55adff]">
           {email}
-        </span>
-      </p>
+        </p>
+      </div>
+
+      {/* Error Message */}
+      {errorMessage && (
+        <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-600">
+          {errorMessage}
+        </div>
+      )}
+
+      {/* Success Message */}
+      {successMessage && (
+        <div className="mt-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-center text-sm text-green-600">
+          {successMessage}
+        </div>
+      )}
+
+      {/* Form */}
+      <div className="mt-6 space-y-5">
+        {/* New Password */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            New Password
+          </label>
+
+          <input
+            type="password"
+            placeholder="Enter new password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            className="h-12 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 text-sm text-gray-800 outline-none transition-all duration-300 focus:border-[#55adff] focus:bg-white focus:ring-4 focus:ring-[#55adff]/15"
+          />
+        </div>
+
+        {/* Confirm Password */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Confirm Password
+          </label>
+
+          <input
+            type="password"
+            placeholder="Confirm new password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="h-12 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 text-sm text-gray-800 outline-none transition-all duration-300 focus:border-[#55adff] focus:bg-white focus:ring-4 focus:ring-[#55adff]/15"
+          />
+        </div>
+
+        {/* Button */}
+        <button
+          disabled={loading}
+          onClick={handelChangePassword}
+          className="mt-2 flex h-12 w-full items-center justify-center rounded-2xl bg-[#55adff] text-sm font-semibold text-white shadow-lg shadow-blue-300/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#3d9fff] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {loading ? "Changing Password..." : "Change Password"}
+        </button>
+      </div>
     </div>
-
-    {/* Messages */}
-    {errorMessage && (
-      <div className="bg-red-50 border border-red-200 text-red-700 p-3 rounded-lg text-center">
-        {errorMessage}
-      </div>
-    )}
-
-    {successMessage && (
-      <div className="bg-green-50 border border-green-200 text-green-700 p-3 rounded-lg text-center">
-        {successMessage}
-      </div>
-    )}
-
-    {/* Form */}
-    <div className="flex flex-col gap-4 mt-2">
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          New Password
-        </label>
-        <input
-          type="password"
-          placeholder="Enter new password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg 
-                     focus:outline-none focus:ring-2 focus:ring-indigo-400"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          placeholder="Confirm new password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg 
-                     focus:outline-none focus:ring-2 focus:ring-indigo-400"
-        />
-      </div>
-
-      <button
-        disabled={loading}
-        onClick={handelChangePassword}
-        className="mt-4 w-full py-2 bg-indigo-600 text-white font-medium rounded-lg 
-                   hover:bg-indigo-700 transition disabled:opacity-50"
-      >
-        {loading ? "Changing..." : "Change Password"}
-      </button>
-    </div>
-
   </div>
 </div>
   )

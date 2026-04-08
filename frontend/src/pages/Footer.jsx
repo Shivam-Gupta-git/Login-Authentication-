@@ -1,56 +1,67 @@
 import React, { useContext } from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+
 import { UserContext } from "../context/UserContext";
 
 function Footer() {
   const { setProfileBoxOpen } = useContext(UserContext);
+
   return (
-    <footer className="bg-gray-100 border-t border-gray-200" onClick={() => setProfileBoxOpen(false)}>
-      <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer
+      className="relative overflow-hidden bg-[#3a6171] text-white"
+      onClick={() => setProfileBoxOpen(false)}
+    >
+      {/* Background Glow */}
+      <div className="absolute -top-20 left-10 h-72 w-72 rounded-full bg-[#0f3b4ca4] blur-3xl" />
+      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-[#0748629c] blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#548ca2c3] blur-3xl border" />
 
-        {/* Logo / Branding */}
-        <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold text-indigo-700">MyApp</h2>
-          <p className="text-gray-600 text-sm mt-1">
-            Build clean, modern web apps with ease.
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
+
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 text-center text-sm text-gray-500 md:flex-row">
+          <p>
+            © {new Date().getFullYear()} MyApp. All rights reserved.
           </p>
-        </div>
 
-        {/* Navigation Links */}
-        <div className="flex flex-col md:flex-row gap-4 text-center">
-        <a href="/" className="text-gray-600 hover:text-indigo-600 transition">
-            Home
-          </a>
-          <a href="/about" className="text-gray-600 hover:text-indigo-600 transition">
-            About
-          </a>
-          <a href="/contact" className="text-gray-600 hover:text-indigo-600 transition">
-            Contact
-          </a>
+          <div className="flex items-center gap-5">
+            <a
+              href="/privacy"
+              className="transition duration-300 hover:text-cyan-400"
+            >
+              Privacy
+            </a>
+            <a
+              href="/terms"
+              className="transition duration-300 hover:text-cyan-400"
+            >
+              Terms
+            </a>
+            <a
+              href="/cookies"
+              className="transition duration-300 hover:text-cyan-400"
+            >
+              Cookies
+            </a>
+          </div>
         </div>
-
-        {/* Social Icons */}
-        <div className="flex gap-4 text-gray-600">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition">
-            <FaFacebookF />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
-            <FaTwitter />
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-700 transition">
-            <FaLinkedinIn />
-          </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition">
-            <FaGithub />
-          </a>
-        </div>
-
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-200 mt-4 py-4 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} MyApp. All rights reserved.
-      </div>
+      {/* Animation */}
+      <style>
+        {`
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}
+      </style>
     </footer>
   );
 }
